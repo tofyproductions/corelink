@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=yes">
+<title>Corelink | אוטומציות לעסקים</title>
+<style>
+:root{--c:#00E5FF;--b:#00B0FF;--d:#2979FF;--t:#00E5A0;--bg:#060D1B;--bg2:#0C1829;--card:#111F36;--t1:#E8F0FE;--t2:#8BA3C4;--t3:#5A7499;--gr:linear-gradient(135deg,#00E5FF,#00B0FF,#2979FF);--r:16px;--rs:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Heebo',Arial,sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased}
+.ctn{max-width:1140px;margin:0 auto;padding:0 1.2rem}
+.gt{background:var(--gr);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+section{position:relative;z-index:1;padding:4rem 0}
+a{color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 1.2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(6,13,27,.85);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,176,255,.06)}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo b{width:28px;height:28px;background:var(--gr);border-radius:7px;display:grid;place-items:center}
+.logo b::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%}
+.logo span{font-weight:700;font-size:1.15rem;color:var(--t1)}
+.dnav{display:flex;gap:1.5rem;list-style:none;align-items:center}
+.dnav a{color:var(--t2);text-decoration:none;font-size:.85rem}
+.dnav a:hover{color:var(--t1)}
+.dcta{padding:.5rem 1.1rem;background:var(--gr);border-radius:7px;color:var(--bg);font-weight:600;font-size:.8rem;text-decoration:none;white-space:nowrap}
+.mnav{display:none;gap:.4rem;align-items:center}
+.mnav a{padding:.4rem .65rem;border-radius:7px;font-weight:600;font-size:.7rem;text-decoration:none;white-space:nowrap}
+.mc{background:var(--gr);color:var(--bg)}.mw{background:#25D366;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:.8rem 1.5rem;border-radius:var(--rs);font-family:inherit;font-weight:700;font-size:.9rem;text-decoration:none;cursor:pointer;border:none}
+.bp{background:var(--gr);color:var(--bg)}.bo{background:transparent;border:1.5px solid rgba(0,176,255,.25);color:var(--c)}
+.hero{position:relative;z-index:1;min-height:100dvh;display:flex;align-items:center;padding:5rem 0 3rem}
+.hero .ctn{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.hbadge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.12);border-radius:99px;font-size:.78rem;color:var(--c);margin-bottom:1rem}
+.hbadge i{width:7px;height:7px;background:var(--t);border-radius:50%;display:inline-block;animation:dot 2s infinite}
+@keyframes dot{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(1.7rem,4.5vw,3rem);font-weight:800;line-height:1.2;margin-bottom:1rem}
+.hero .sub{font-size:1rem;color:var(--t2);max-width:460px;margin-bottom:1.5rem;line-height:1.8}
+.hbtns{display:flex;gap:.7rem;flex-wrap:wrap}
+.qc{display:none;background:var(--card);border:1px solid rgba(0,176,255,.08);border-radius:var(--r);padding:1rem;margin-top:1rem;text-align:center}
+.qc h4{font-size:.88rem;margin-bottom:.5rem}
+.qcr{display:flex;gap:.4rem;justify-content:center}
+.qcr a{flex:1;padding:.6rem;border-radius:8px;font-weight:600;font-size:.78rem;text-align:center;text-decoration:none}
+.hgfx{position:relative;width:100%;max-width:350px;aspect-ratio:1;margin:0 auto}
+.hring{position:absolute;border:1px solid rgba(0,176,255,.08);border-radius:50%}
+.hring:nth-child(1){inset:15%;animation:spin 30s linear infinite}
+.hring:nth-child(2){inset:30%;border-color:rgba(0,229,160,.06);animation:spin 20s linear infinite reverse}
+.hring:nth-child(3){inset:42%;animation:spin 15s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hnode{position:absolute;width:14px;height:14px;background:var(--c);border-radius:50%;box-shadow:0 0 20px rgba(0,229,255,.4)}
+.hnode:nth-child(4){top:10%;right:40%;animation:orb1 8s ease-in-out infinite}
+.hnode:nth-child(5){bottom:20%;right:10%;background:var(--t);animation:orb2 6s ease-in-out infinite}
+.hnode:nth-child(6){top:50%;left:8%;background:var(--d);animation:orb3 7s ease-in-out infinite}
+.hnode:nth-child(7){bottom:10%;left:35%;background:var(--b);animation:orb1 9s ease-in-out infinite reverse}
+.hcore{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:var(--gr);border-radius:50%;box-shadow:0 0 40px rgba(0,229,255,.3)}
+.hcore::after{content:'';position:absolute;inset:30%;background:#fff;border-radius:50%;opacity:.8}
+@keyframes orb1{0%,100%{transform:translate(0,0)}50%{transform:translate(-10px,15px)}}
+@keyframes orb2{0%,100%{transform:translate(0,0)}50%{transform:translate(12px,-8px)}}
+@keyframes orb3{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,-12px)}}
+.stag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:3px;color:var(--c);text-transform:uppercase;margin-bottom:.5rem}
+.stitle{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:800;margin-bottom:.5rem;line-height:1.3}
+.ssub{font-size:.92rem;color:var(--t2);max-width:500px;margin-bottom:2rem;line-height:1.8}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.sc{background:var(--card);border:1px solid rgba(0,176,255,.05);border-radius:var(--r);padding:1.6rem 1.3rem}
+.sc .ico{width:42px;height:42px;background:rgba(0,229,255,.07);border-radius:10px;display:grid;place-items:center;margin-bottom:.8rem;font-size:1.2rem}
+.sc h3{font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.sc p{color:var(--t2);font-size:.84rem;line-height:1.7}
+.demo{background:var(--bg2);border-top:1px solid rgba(0,176,255,.04);border-bottom:1px solid rgba(0,176,255,.04)}
+.dlay{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.dbox{background:var(--card);border:1px solid rgba(0,176,255,.08);border-radius:var(--r);padding:1.3rem}
+.fs{display:flex;align-items:center;gap:.7rem;padding:.7rem;background:rgba(0,229,255,.04);border-radius:var(--rs);border-right:3px solid transparent;margin-bottom:.5rem;color:var(--t2)}
+.fs .si{width:30px;height:30px;min-width:30px;background:var(--gr);border-radius:7px;display:grid;place-items:center;font-size:.8rem}
+.fs span{font-size:.82rem}
+.fs:nth-child(1){animation:s1 10s infinite}.fs:nth-child(2){animation:s2 10s infinite}.fs:nth-child(3){animation:s3 10s infinite}.fs:nth-child(4){animation:s4 10s infinite}.fs:nth-child(5){animation:s5 10s infinite}
+@keyframes s1{0%,15%{opacity:1;border-right-color:var(--c);background:rgba(0,229,255,.1);color:var(--t1)}20%,100%{opacity:.4;border-right-color:transparent;background:rgba(0,229,255,.04);color:var(--t2)}}
+@keyframes s2{0%,19%{opacity:.4}20%,35%{opacity:1;border-right-color:var(--c);background:rgba(0,229,255,.1);color:var(--t1)}40%,100%{opacity:.4;border-right-color:transparent;background:rgba(0,229,255,.04);color:var(--t2)}}
+@keyframes s3{0%,39%{opacity:.4}40%,55%{opacity:1;border-right-color:var(--c);background:rgba(0,229,255,.1);color:var(--t1)}60%,100%{opacity:.4;border-right-color:transparent;background:rgba(0,229,255,.04);color:var(--t2)}}
+@keyframes s4{0%,59%{opacity:.4}60%,75%{opacity:1;border-right-color:var(--c);background:rgba(0,229,255,.1);color:var(--t1)}80%,100%{opacity:.4;border-right-color:transparent;background:rgba(0,229,255,.04);color:var(--t2)}}
+@keyframes s5{0%,79%{opacity:.4}80%,95%{opacity:1;border-right-color:var(--c);background:rgba(0,229,255,.1);color:var(--t1)}100%{opacity:.4;border-right-color:transparent;background:rgba(0,229,255,.04);color:var(--t2)}}
+.anim-sec{padding:4rem 0;overflow:hidden}
+.anim-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.anim-side{background:var(--card);border-radius:var(--r);padding:1.5rem;overflow:hidden}
+.anim-side.manual{border:1px solid rgba(255,82,82,.12)}.anim-side.auto{border:1px solid rgba(0,229,160,.12)}
+.anim-hdr{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem;font-weight:700;font-size:.92rem}
+.atag{padding:3px 10px;border-radius:99px;font-size:.65rem;font-weight:600}
+.manual .atag{background:rgba(255,82,82,.1);color:#FF5252}.auto .atag{background:rgba(0,229,160,.1);color:var(--t)}
+.arow{display:flex;align-items:center;gap:.6rem;padding:.55rem .7rem;margin-bottom:.4rem;border-radius:8px;font-size:.8rem;color:var(--t2);position:relative;overflow:hidden}
+.arow .fill{position:absolute;inset:0;border-radius:8px;transform-origin:right}
+.manual .arow .fill{background:rgba(255,82,82,.06);animation:fillSlow 8s ease-in-out infinite}
+.manual .arow:nth-child(2) .fill{animation-delay:.6s}.manual .arow:nth-child(3) .fill{animation-delay:1.2s}.manual .arow:nth-child(4) .fill{animation-delay:1.8s}.manual .arow:nth-child(5) .fill{animation-delay:2.4s}
+.auto .arow .fill{background:rgba(0,229,160,.08);animation:fillFast 3s ease-in-out infinite}
+.auto .arow:nth-child(2) .fill{animation-delay:.12s}.auto .arow:nth-child(3) .fill{animation-delay:.24s}.auto .arow:nth-child(4) .fill{animation-delay:.36s}.auto .arow:nth-child(5) .fill{animation-delay:.48s}
+@keyframes fillSlow{0%{transform:scaleX(0)}35%{transform:scaleX(1)}65%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes fillFast{0%{transform:scaleX(0)}20%{transform:scaleX(1)}50%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+.arow span,.arow .tm{position:relative;z-index:1}.arow .tm{margin-right:auto;font-family:Arial,sans-serif;font-weight:700;font-size:.7rem;direction:ltr}
+.manual .arow .tm{color:#FF5252}.auto .arow .tm{color:var(--t)}
+.atimer{text-align:center;margin-top:1rem;padding:.7rem;border-radius:var(--rs);font-family:Arial,sans-serif;font-weight:800;font-size:1.5rem}
+.manual .atimer{background:rgba(255,82,82,.05);color:#FF5252;animation:pulse2 3s infinite}
+.auto .atimer{background:rgba(0,229,160,.05);color:var(--t);animation:pulse2 1.5s infinite}
+@keyframes pulse2{0%,100%{opacity:.5}50%{opacity:1}}
+.atimer small{display:block;font-size:.7rem;font-weight:400;opacity:.7;margin-top:.2rem}
+.anim-summary{display:flex;justify-content:space-around;margin-top:1.5rem;text-align:center;padding:1.2rem;background:var(--card);border-radius:var(--r);border:1px solid rgba(0,176,255,.05)}
+.anim-summary .sn{font-family:Arial,sans-serif;font-size:1.8rem;font-weight:900;line-height:1}
+.anim-summary .sn.red{color:#FF5252}.anim-summary .sn.green{color:var(--t)}
+.anim-summary small{font-size:.72rem;color:var(--t3);display:block;margin-top:.3rem}
+.calc-wrap{background:var(--card);border:1px solid rgba(0,176,255,.08);border-radius:20px;padding:2rem;position:relative;overflow:hidden}
+.calc-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gr)}
+.calc-q{font-size:.88rem;color:var(--t2);margin-bottom:.8rem;font-weight:500}
+.calc-r{position:absolute;opacity:0;pointer-events:none}
+.copts{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1.5rem}
+.copts label{display:block;padding:.8rem .5rem;background:var(--bg);border:2px solid rgba(0,176,255,.06);border-radius:12px;text-align:center;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent}
+.copts label:active{transform:scale(.96)}
+.copts .ov{font-weight:800;font-size:1.1rem;display:block;margin-bottom:.15rem}
+.copts .ol{font-size:.65rem;color:var(--t3);display:block}
+#e1:checked~.copts-emp label[for=e1],#e2:checked~.copts-emp label[for=e2],#e3:checked~.copts-emp label[for=e3],#e4:checked~.copts-emp label[for=e4],
+#h1:checked~.copts-hrs label[for=h1],#h2:checked~.copts-hrs label[for=h2],#h3:checked~.copts-hrs label[for=h3],#h4:checked~.copts-hrs label[for=h4]{border-color:var(--c);background:rgba(0,229,255,.06);box-shadow:0 0 16px rgba(0,229,255,.08)}
+.cres{display:none;background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.08);border-radius:var(--r);padding:1.5rem;text-align:center;margin-top:1rem}
+.cbig{font-family:Arial,sans-serif;font-size:2.8rem;font-weight:900;background:var(--gr);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.clbl{color:var(--t2);font-size:.85rem;margin:.2rem 0 1rem}
+.crow{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(0,176,255,.05);font-size:.82rem}
+.crow .cl{color:var(--t2)}.crow .cv{font-weight:700;color:var(--t)}
+.cbadge{display:inline-block;padding:4px 12px;background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.2);border-radius:99px;font-size:.72rem;color:var(--t);font-weight:600;margin-top:.8rem}
+#e1:checked~#h1:checked~.cres.r11,#e1:checked~#h2:checked~.cres.r12,#e1:checked~#h3:checked~.cres.r13,#e1:checked~#h4:checked~.cres.r14,
+#e2:checked~#h1:checked~.cres.r21,#e2:checked~#h2:checked~.cres.r22,#e2:checked~#h3:checked~.cres.r23,#e2:checked~#h4:checked~.cres.r24,
+#e3:checked~#h1:checked~.cres.r31,#e3:checked~#h2:checked~.cres.r32,#e3:checked~#h3:checked~.cres.r33,#e3:checked~#h4:checked~.cres.r34,
+#e4:checked~#h1:checked~.cres.r41,#e4:checked~#h2:checked~.cres.r42,#e4:checked~#h3:checked~.cres.r43,#e4:checked~#h4:checked~.cres.r44{display:block}
+.calc-def{color:var(--t3);text-align:center;padding:2rem 1rem;font-size:.9rem;border:2px dashed rgba(0,176,255,.08);border-radius:var(--r);margin-top:1rem}
+#e1:checked~#h1:checked~.calc-def,#e1:checked~#h2:checked~.calc-def,#e1:checked~#h3:checked~.calc-def,#e1:checked~#h4:checked~.calc-def,
+#e2:checked~#h1:checked~.calc-def,#e2:checked~#h2:checked~.calc-def,#e2:checked~#h3:checked~.calc-def,#e2:checked~#h4:checked~.calc-def,
+#e3:checked~#h1:checked~.calc-def,#e3:checked~#h2:checked~.calc-def,#e3:checked~#h3:checked~.calc-def,#e3:checked~#h4:checked~.calc-def,
+#e4:checked~#h1:checked~.calc-def,#e4:checked~#h2:checked~.calc-def,#e4:checked~#h3:checked~.calc-def,#e4:checked~#h4:checked~.calc-def{display:none}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+.ps .num{width:48px;height:48px;background:var(--card);border:2px solid rgba(0,176,255,.12);border-radius:50%;display:grid;place-items:center;margin:0 auto .8rem;font-weight:800;font-size:.95rem;color:var(--c);font-family:Arial,sans-serif}
+.ps h3{font-size:.92rem;font-weight:700;margin-bottom:.3rem}
+.ps p{color:var(--t2);font-size:.8rem;line-height:1.6}
+.flist{display:flex;flex-direction:column;gap:.6rem;max-width:780px}
+details.fq{background:var(--card);border:1px solid rgba(0,176,255,.05);border-radius:var(--r);overflow:hidden}
+details.fq[open]{border-color:rgba(0,176,255,.12)}
+details.fq summary{padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:.9rem;list-style:none;-webkit-user-select:none;user-select:none}
+details.fq summary::-webkit-details-marker{display:none}
+details.fq summary::marker{content:'';display:none}
+details.fq summary .p{width:24px;height:24px;min-width:24px;background:rgba(0,229,255,.08);border-radius:50%;display:grid;place-items:center;font-size:.9rem;color:var(--c);transition:transform .3s}
+details.fq[open] summary .p{transform:rotate(45deg);background:var(--gr);color:var(--bg)}
+details.fq .ans{padding:0 1.2rem 1rem;color:var(--t2);font-size:.85rem;line-height:1.8}
+.profiler{background:var(--bg2);border-top:1px solid rgba(0,176,255,.04);border-bottom:1px solid rgba(0,176,255,.04)}
+.prof-wrap{background:var(--card);border:1px solid rgba(0,176,255,.08);border-radius:20px;padding:2rem;position:relative;overflow:hidden}
+.prof-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--t),var(--c),var(--d))}
+.prof-step{margin-bottom:1.8rem}
+.pq{display:flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:600;margin-bottom:.7rem;color:var(--t1)}
+.pq .pnum{width:26px;height:26px;min-width:26px;background:var(--gr);border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:800;color:var(--bg)}
+.popts{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
+.popts.cols4{grid-template-columns:repeat(4,1fr)}.popts.cols3{grid-template-columns:repeat(3,1fr)}
+.popts input{display:none}
+.popts label{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:.7rem .4rem;background:var(--bg);border:2px solid rgba(0,176,255,.06);border-radius:12px;text-align:center;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.popts label:active{transform:scale(.95)}
+.popts input:checked+label{border-color:var(--c);background:rgba(0,229,255,.06);box-shadow:0 0 14px rgba(0,229,255,.08)}
+.popts .pe{font-size:1.3rem;line-height:1}.popts .pt{font-weight:700;font-size:.78rem;line-height:1.3}.popts .pd{font-size:.6rem;color:var(--t3);line-height:1.3}
+.popts input[type=checkbox]:checked+label{border-color:var(--t);background:rgba(0,229,160,.06);box-shadow:0 0 14px rgba(0,229,160,.08)}
+.prof-div{border:none;border-top:1px solid rgba(0,176,255,.06);margin:1.5rem 0}
+.prof-cta{background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.1);border-radius:var(--r);padding:1.5rem;text-align:center;margin-top:1.5rem}
+.prof-cta h3{font-size:1.1rem;margin-bottom:.5rem}
+.prof-cta p{color:var(--t2);font-size:.85rem;margin-bottom:1rem;max-width:400px;margin-inline:auto}
+.cgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:2rem}
+.cinfo{display:flex;flex-direction:column;gap:1rem}
+.ci{display:flex;gap:.7rem;align-items:center;padding:.8rem;background:var(--card);border-radius:var(--r);border:1px solid rgba(0,176,255,.04);text-decoration:none;color:inherit}
+.ci-i{width:40px;height:40px;min-width:40px;background:rgba(0,229,255,.07);border-radius:10px;display:grid;place-items:center;font-size:1rem}
+.ci-l{color:var(--t3);font-size:.75rem}.ci-v{font-weight:600;font-size:.88rem;direction:ltr;text-align:right}
+.cform{display:flex;flex-direction:column;gap:.6rem}
+.cform .row{display:flex;gap:.6rem}
+.cform input,.cform textarea{width:100%;padding:.8rem 1rem;background:var(--card);border:1px solid rgba(0,176,255,.08);border-radius:var(--rs);color:var(--t1);font-family:inherit;font-size:16px;outline:none}
+.cform input::placeholder,.cform textarea::placeholder{color:var(--t3)}
+.cform input:focus,.cform textarea:focus{border-color:var(--c)}
+.cform textarea{min-height:100px;resize:vertical}
+footer{position:relative;z-index:1;border-top:1px solid rgba(0,176,255,.05);padding:1.2rem;text-align:center;color:var(--t3);font-size:.78rem}
+.waf{position:fixed;bottom:1.5rem;left:1.5rem;z-index:90}
+.waf a{width:52px;height:52px;background:#25D366;border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 18px rgba(37,211,102,.4);text-decoration:none}
+.waf svg{width:25px;height:25px;fill:#fff}
+.mstk{display:none;position:fixed;bottom:0;left:0;right:0;z-index:80;padding:.65rem 1rem;background:rgba(6,13,27,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(0,176,255,.08)}
+.mstk a{display:block;width:100%;padding:.8rem;background:var(--gr);border-radius:var(--rs);color:var(--bg);font-weight:700;font-size:.88rem;text-align:center;text-decoration:none}
+@media(max-width:1024px){
+.hero .ctn{grid-template-columns:1fr;text-align:center}.hero .sub{margin-inline:auto}.hbtns{justify-content:center}.hgfx{max-width:250px}
+.sgrid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:repeat(2,1fr)}.dlay{grid-template-columns:1fr}.anim-grid{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr}.copts{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+nav{padding:.6rem 1rem}.dnav,.dcta{display:none}.mnav{display:flex}
+.hero{min-height:auto;padding:4.2rem 0 1.2rem}.hero .ctn{gap:.5rem}.hero h1{font-size:1.5rem}.hero .sub{font-size:.85rem;margin-bottom:1rem}.hgfx{max-width:130px;margin-top:.5rem}.qc{display:block}
+section{padding:2.5rem 0}.stitle{font-size:1.25rem}.ssub{font-size:.83rem;margin-bottom:1.5rem}
+.sgrid{grid-template-columns:1fr;gap:.4rem}.sc{padding:1rem}.sc h3{font-size:.9rem}.sc p{font-size:.8rem}.sc .ico{width:34px;height:34px;font-size:1rem;margin-bottom:.5rem}
+.dlay{gap:1rem}.fs{padding:.5rem}.fs span{font-size:.78rem}.fs .si{width:26px;height:26px;min-width:26px;font-size:.75rem}
+.anim-grid{gap:.8rem}.anim-side{padding:1rem}.arow{font-size:.75rem;padding:.4rem .5rem}.atimer{font-size:1.2rem}.anim-summary{padding:.8rem}.anim-summary .sn{font-size:1.3rem}
+.calc-wrap{padding:1.2rem}.cbig{font-size:2rem}.copts{grid-template-columns:repeat(2,1fr);gap:.4rem}.copts label{padding:.6rem .4rem}.copts .ov{font-size:.95rem}
+.pgrid{grid-template-columns:1fr 1fr;gap:.6rem}.ps .num{width:40px;height:40px;font-size:.85rem}.ps h3{font-size:.85rem}.ps p{font-size:.75rem}
+details.fq summary{padding:.85rem 1rem;font-size:.84rem}details.fq .ans{font-size:.8rem;padding:0 1rem .8rem}
+.prof-wrap{padding:1.2rem}.popts{grid-template-columns:repeat(2,1fr)!important;gap:.35rem}.popts label{padding:.55rem .3rem}.popts .pe{font-size:1.1rem}.popts .pt{font-size:.72rem}.pq{font-size:.82rem}
+.cform .row{flex-direction:column}.mstk{display:block}.waf{bottom:4.5rem}
+}
+@media(max-width:480px){html{font-size:15px}.pgrid{grid-template-columns:1fr}}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav>
+  <a href="#" class="logo"><b></b><span>Corelink</span></a>
+  <ul class="dnav"><li><a href="#services">שירותים</a></li><li><a href="#demo">דמו חי</a></li><li><a href="#calc">מחשבון ROI</a></li><li><a href="#faq">שאלות נפוצות</a></li><li><a href="#profile">פרופיל עסקי</a></li><li><a href="#contact">צור קשר</a></li></ul>
+  <a href="#contact" class="dcta">שיחת ייעוץ חינם ←</a>
+  <div class="mnav"><a href="tel:0543256717" class="mc">📞 חייגו</a><a href="https://wa.me/972543256717?text=היי, מעוניין לשמוע על אוטומציות" class="mw">💬 ווטסאפ</a></div>
+</nav>
+<header class="hero"><div class="ctn">
+  <div>
+    <div class="hbadge"><i></i> בונים אוטומציות חכמות לעסקים</div>
+    <h1>הפסיקו לעבוד קשה.<br>תנו ל<span class="gt">אוטומציה</span> לעבוד בשבילכם.</h1>
+    <p class="sub">ב-Corelink אנחנו מתכננים ובונים מערכות אוטומציה בהתאמה אישית שחוסכות לעסק שלכם זמן, כסף וכאב ראש — כדי שתוכלו להתמקד במה שבאמת חשוב: לצמוח.</p>
+    <div class="hbtns"><a href="#contact" class="btn bp">לתיאום שיחה חינם ←</a><a href="#calc" class="btn bo">🧮 חשבו כמה תחסכו</a></div>
+    <div class="qc"><h4>⚡ צרו קשר עכשיו</h4><div class="qcr"><a href="tel:0543256717" style="background:var(--gr);color:var(--bg)">📞 חייגו</a><a href="https://wa.me/972543256717?text=היי, מעוניין לשמוע על אוטומציות" style="background:#25D366;color:#fff">💬 ווטסאפ</a><a href="#contact" style="background:rgba(0,229,255,.1);color:var(--c);border:1px solid rgba(0,229,255,.2)">📧 טופס</a></div></div>
+  </div>
+  <div class="hgfx"><div class="hring"></div><div class="hring"></div><div class="hring"></div><div class="hnode"></div><div class="hnode"></div><div class="hnode"></div><div class="hnode"></div><div class="hcore"></div></div>
+</div></header>
+<section id="services"><div class="ctn">
+  <span class="stag">מה אנחנו עושים</span><h2 class="stitle">פתרונות אוטומציה <span class="gt">שעובדים</span></h2><p class="ssub">לא סתם טכנולוגיה — אלא מערכות שבאמת חוסכות לכם זמן וכסף</p>
+  <div class="sgrid">
+    <div class="sc"><div class="ico">⚡</div><h3>אוטומציית תהליכים</h3><p>הפיכת תהליכים ידניים שחוזרים על עצמם לאוטומטיים — מהזנת נתונים ועד דוחות.</p></div>
+    <div class="sc"><div class="ico">🔗</div><h3>אינטגרציה בין מערכות</h3><p>חיבור חלק בין כל הכלים שלכם — CRM, מייל, ווטסאפ, גוגל ועוד.</p></div>
+    <div class="sc"><div class="ico">🤖</div><h3>בוטים + AI</h3><p>צ׳אטבוטים חכמים עם בינה מלאכותית לשירות לקוחות ומכירות 24/7.</p></div>
+    <div class="sc"><div class="ico">📊</div><h3>דשבורדים חכמים</h3><p>לוחות בקרה שמרכזים את כל הנתונים ומציגים תמונה ברורה בזמן אמת.</p></div>
+    <div class="sc"><div class="ico">📧</div><h3>אוטומציית שיווק</h3><p>קמפיינים, סיקוונסים ומעקב לידים אוטומטי שסוגרים עסקאות.</p></div>
+    <div class="sc"><div class="ico">🛡️</div><h3>ליווי שוטף</h3><p>לא נעלמים אחרי ההטמעה. תמיכה, שדרוגים ואופטימיזציה קבועה.</p></div>
+  </div>
+</div></section>
+<section id="demo" class="demo"><div class="ctn">
+  <span class="stag">ראו את זה בפעולה</span><h2 class="stitle">איך אוטומציה <span class="gt">עובדת בפועל?</span></h2><p class="ssub">ליד חדש נכנס מהאתר — וכל השאר קורה לבד</p>
+  <div class="dlay">
+    <div class="dbox">
+      <div class="fs"><div class="si">📥</div><span>ליד חדש נכנס מטופס באתר</span></div>
+      <div class="fs"><div class="si">📋</div><span>הליד נשמר אוטומטית ב-CRM</span></div>
+      <div class="fs"><div class="si">💬</div><span>הודעת ווטסאפ נשלחת ללקוח תוך שניות</span></div>
+      <div class="fs"><div class="si">📧</div><span>מייל עם מידע נוסף יוצא אוטומטית</span></div>
+      <div class="fs"><div class="si">🔔</div><span>איש המכירות מקבל התראה + תזכורת</span></div>
+    </div>
+    <div>
+      <h3 style="font-size:1.15rem;margin-bottom:.7rem">בלי אוטומציה 😰</h3>
+      <p style="color:var(--t2);margin-bottom:1.2rem;line-height:1.8;font-size:.9rem">הליד מחכה שמישהו יראה את המייל. עוברות דקות, שעות. הלקוח כבר פנה למתחרים.</p>
+      <h3 style="font-size:1.15rem;margin-bottom:.7rem">עם Corelink ⚡</h3>
+      <p style="color:var(--t2);margin-bottom:1.2rem;line-height:1.8;font-size:.9rem">הליד מטופל תוך <strong style="color:var(--t)">3 שניות</strong>. הלקוח מקבל הודעה מיידית, איש המכירות מקבל התראה, והכל מתועד.</p>
+      <a href="#contact" class="btn bp">רוצה את זה בעסק שלך? ←</a>
+    </div>
+  </div>
+</div></section>
+<section class="anim-sec"><div class="ctn">
+  <span class="stag">רואים את ההבדל</span><h2 class="stitle">עבודה ידנית מול <span class="gt">אוטומציה</span></h2><p class="ssub">סימולציה בזמן אמת — ראו את הפער בעיניים</p>
+  <div class="anim-grid">
+    <div class="anim-side manual"><div class="anim-hdr">🐌 <span class="atag">ידני</span> בלי אוטומציה</div><div class="arow"><div class="fill"></div><span>📥 קליטת ליד</span><span class="tm">4 דק׳</span></div><div class="arow"><div class="fill"></div><span>📋 הזנה ל-CRM</span><span class="tm">6 דק׳</span></div><div class="arow"><div class="fill"></div><span>📧 שליחת מייל</span><span class="tm">5 דק׳</span></div><div class="arow"><div class="fill"></div><span>💬 הודעת ווטסאפ</span><span class="tm">3 דק׳</span></div><div class="arow"><div class="fill"></div><span>🔔 עדכון מנהל</span><span class="tm">7 דק׳</span></div><div class="atimer">25 דק׳<small>לליד אחד</small></div></div>
+    <div class="anim-side auto"><div class="anim-hdr">⚡ <span class="atag">אוטומטי</span> עם Corelink</div><div class="arow"><div class="fill"></div><span>📥 קליטת ליד</span><span class="tm">0.5 שנ׳</span></div><div class="arow"><div class="fill"></div><span>📋 שמירה ב-CRM</span><span class="tm">0.3 שנ׳</span></div><div class="arow"><div class="fill"></div><span>📧 מייל אוטומטי</span><span class="tm">0.5 שנ׳</span></div><div class="arow"><div class="fill"></div><span>💬 ווטסאפ מיידי</span><span class="tm">0.5 שנ׳</span></div><div class="arow"><div class="fill"></div><span>🔔 התראה למנהל</span><span class="tm">0.2 שנ׳</span></div><div class="atimer">3 שנ׳<small>לליד אחד</small></div></div>
+  </div>
+  <div class="anim-summary"><div><div class="sn red">25 דק׳</div><small>ידני — לליד אחד</small></div><div><div class="sn" style="font-size:1.5rem;color:var(--t2)">→</div></div><div><div class="sn green">3 שנ׳</div><small>אוטומטי — לליד אחד</small></div><div><div class="sn green">99.8%</div><small>חיסכון בזמן</small></div></div>
+</div></section>
+<section id="calc"><div class="ctn">
+  <span class="stag">מחשבון חיסכון</span><h2 class="stitle">כמה <span class="gt">תחסכו</span> עם אוטומציה?</h2><p class="ssub">בחרו את גודל העסק ותראו את החיסכון</p>
+  <div class="calc-wrap">
+    <div class="calc-q">👥 כמה עובדים עושים עבודה ידנית חוזרת?</div>
+    <input type="radio" name="emp" id="e1" class="calc-r"><input type="radio" name="emp" id="e2" class="calc-r"><input type="radio" name="emp" id="e3" class="calc-r"><input type="radio" name="emp" id="e4" class="calc-r">
+    <div class="copts copts-emp"><label for="e1"><span class="ov">1-3</span><span class="ol">עסק קטן</span></label><label for="e2"><span class="ov">4-8</span><span class="ol">עסק בינוני</span></label><label for="e3"><span class="ov">9-20</span><span class="ol">חברה</span></label><label for="e4"><span class="ov">20+</span><span class="ol">ארגון</span></label></div>
+    <div class="calc-q">⏰ כמה שעות ביום מוקדשות למשימות ידניות?</div>
+    <input type="radio" name="hrs" id="h1" class="calc-r"><input type="radio" name="hrs" id="h2" class="calc-r"><input type="radio" name="hrs" id="h3" class="calc-r"><input type="radio" name="hrs" id="h4" class="calc-r">
+    <div class="copts copts-hrs"><label for="h1"><span class="ov">1-2</span><span class="ol">קצת</span></label><label for="h2"><span class="ov">3-4</span><span class="ol">בינוני</span></label><label for="h3"><span class="ov">5-7</span><span class="ol">הרבה</span></label><label for="h4"><span class="ov">8+</span><span class="ol">כל היום</span></label></div>
+    <div class="cres r11"><div class="cbig">₪3,528</div><div class="clbl">חיסכון חודשי משוער</div><div class="crow"><span class="cl">שעות שנחסכות</span><span class="cv">44</span></div><div class="crow"><span class="cl">חיסכון שנתי</span><span class="cv">₪42,336</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות בפועל? ←</a><div class="cbadge">💡 גם חיסכון קטן הופך לגדול לאורך זמן</div></div>
+    <div class="cres r12"><div class="cbig">₪7,056</div><div class="clbl">חיסכון חודשי משוער</div><div class="crow"><span class="cl">שעות שנחסכות</span><span class="cv">88</span></div><div class="crow"><span class="cl">חיסכון שנתי</span><span class="cv">₪84,672</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות בפועל? ←</a><div class="cbadge">🔥 כמו להוסיף 0.5 עובד בחינם!</div></div>
+    <div class="cres r13"><div class="cbig">₪14,112</div><div class="clbl">חיסכון חודשי משוער</div><div class="crow"><span class="cl">שעות שנחסכות</span><span class="cv">176</span></div><div class="crow"><span class="cl">חיסכון שנתי</span><span class="cv">₪169,344</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות בפועל? ←</a><div class="cbadge">🔥 כמו להוסיף עובד בחינם!</div></div>
+    <div class="cres r14"><div class="cbig">₪18,816</div><div class="clbl">חיסכון חודשי משוער</div><div class="crow"><span class="cl">שעות שנחסכות</span><span class="cv">235</span></div><div class="crow"><span class="cl">חיסכון שנתי</span><span class="cv">₪225,792</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות בפועל? ←</a><div class="cbadge">🔥 כמו להוסיף 1.4 עובדים בחינם!</div></div>
+    <div class="cres r21"><div class="cbig">₪8,820</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">110</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪105,840</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 0.7 עובד בחינם!</div></div>
+    <div class="cres r22"><div class="cbig">₪17,640</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">220</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪211,680</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 1.3 עובדים בחינם!</div></div>
+    <div class="cres r23"><div class="cbig">₪35,280</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">441</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪423,360</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 2.6 עובדים בחינם!</div></div>
+    <div class="cres r24"><div class="cbig">₪47,040</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">588</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪564,480</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 3.5 עובדים בחינם!</div></div>
+    <div class="cres r31"><div class="cbig">₪26,460</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">330</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪317,520</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 2.0 עובדים בחינם!</div></div>
+    <div class="cres r32"><div class="cbig">₪52,920</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">661</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪635,040</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 3.9 עובדים בחינם!</div></div>
+    <div class="cres r33"><div class="cbig">₪105,840</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">1,323</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪1,270,080</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 7.9 עובדים בחינם!</div></div>
+    <div class="cres r34"><div class="cbig">₪141,120</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">1,764</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪1,693,440</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 10.5 עובדים בחינם!</div></div>
+    <div class="cres r41"><div class="cbig">₪61,740</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">771</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪740,880</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 4.6 עובדים בחינם!</div></div>
+    <div class="cres r42"><div class="cbig">₪123,480</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">1,543</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪1,481,760</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 9.2 עובדים בחינם!</div></div>
+    <div class="cres r43"><div class="cbig">₪246,960</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">3,087</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪2,963,520</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 18.4 עובדים בחינם!</div></div>
+    <div class="cres r44"><div class="cbig">₪329,280</div><div class="clbl">חיסכון חודשי</div><div class="crow"><span class="cl">שעות</span><span class="cv">4,116</span></div><div class="crow"><span class="cl">שנתי</span><span class="cv">₪3,951,360</span></div><a href="#contact" class="btn bp" style="margin-top:1rem;width:100%;justify-content:center">רוצים לראות? ←</a><div class="cbadge">🔥 24.5 עובדים בחינם!</div></div>
+    <div class="calc-def">👆 בחרו גודל עסק ושעות עבודה ידנית כדי לראות את החיסכון</div>
+  </div>
+</div></section>
+<section id="process"><div class="ctn">
+  <span class="stag">איך זה עובד</span><h2 class="stitle">תהליך פשוט <span class="gt">ב-4 שלבים</span></h2><p class="ssub">מהפגישה הראשונה ועד מערכת שרצה לבד</p>
+  <div class="pgrid">
+    <div class="ps"><div class="num">01</div><h3>שיחת אפיון</h3><p>נבין צרכים, נמפה תהליכים ונזהה הזדמנויות</p></div>
+    <div class="ps"><div class="num">02</div><h3>תכנון מפורט</h3><p>תוכנית עבודה עם לוחות זמנים ותקציב</p></div>
+    <div class="ps"><div class="num">03</div><h3>פיתוח והטמעה</h3><p>בונים, בודקים ומטמיעים בצורה חלקה</p></div>
+    <div class="ps"><div class="num">04</div><h3>ליווי ואופטימיזציה</h3><p>שיפור מתמיד עם הצמיחה שלכם</p></div>
+  </div>
+</div></section>
+<section id="faq"><div class="ctn">
+  <span class="stag">שאלות נפוצות</span><h2 class="stitle">יש לכם <span class="gt">שאלות?</span></h2><p class="ssub">הנה תשובות לשאלות שאנחנו מקבלים הכי הרבה</p>
+  <div class="flist">
+    <details class="fq"><summary>מה זה בכלל אוטומציה עסקית? <span class="p">+</span></summary><div class="ans">אוטומציה עסקית זה שימוש בטכנולוגיה כדי לבצע משימות שחוזרות על עצמן באופן אוטומטי — בלי מגע אנושי.</div></details>
+    <details class="fq"><summary>כמה זמן לוקח להטמיע מערכת? <span class="p">+</span></summary><div class="ans">אוטומציות בסיסיות מוכנות תוך שבוע. מערכות מורכבות לוקחות 2-6 שבועות.</div></details>
+    <details class="fq"><summary>כמה זה עולה? <span class="p">+</span></summary><div class="ans">המחיר תלוי בהיקף. שיחת אפיון חינם שבסופה תקבלו הצעת מחיר שקופה — בלי הפתעות.</div></details>
+    <details class="fq"><summary>עם אילו כלים אתם עובדים? <span class="p">+</span></summary><div class="ans">Zapier, Make, n8n, Monday, HubSpot, Salesforce, WhatsApp API, Google Workspace, Airtable ועוד.</div></details>
+    <details class="fq"><summary>מה קורה אחרי שהמערכת עולה לאוויר? <span class="p">+</span></summary><div class="ans">לא נעלמים! ליווי שוטף, תמיכה טכנית ואופטימיזציה קבועה.</div></details>
+    <details class="fq"><summary>צריך ידע טכני? <span class="p">+</span></summary><div class="ans">בכלל לא. המערכות פשוטות לשימוש + הדרכה מלאה וליווי.</div></details>
+  </div>
+</div></section>
+<section id="profile" class="profiler"><div class="ctn">
+  <span class="stag">נתחיל להכיר</span><h2 class="stitle">ספרו לנו על <span class="gt">העסק שלכם</span></h2><p class="ssub">ענו על כמה שאלות — ככה נכין לכם הצעה מדויקת מהשיחה הראשונה</p>
+  <div class="prof-wrap">
+    <div class="prof-step"><div class="pq"><span class="pnum">1</span> באיזה תחום העסק?</div><div class="popts cols4"><input type="radio" name="biz" id="b1"><label for="b1"><span class="pe">🛒</span><span class="pt">מסחר</span><span class="pd">חנות, איקומרס</span></label><input type="radio" name="biz" id="b2"><label for="b2"><span class="pe">💼</span><span class="pt">שירותים</span><span class="pd">ייעוץ, עו״ד, שיווק</span></label><input type="radio" name="biz" id="b3"><label for="b3"><span class="pe">💻</span><span class="pt">טכנולוגיה</span><span class="pd">SaaS, פיתוח</span></label><input type="radio" name="biz" id="b4"><label for="b4"><span class="pe">🍽️</span><span class="pt">מזון ואירוח</span></label><input type="radio" name="biz" id="b5"><label for="b5"><span class="pe">🏥</span><span class="pt">בריאות</span></label><input type="radio" name="biz" id="b6"><label for="b6"><span class="pe">🎓</span><span class="pt">חינוך</span></label><input type="radio" name="biz" id="b7"><label for="b7"><span class="pe">🏗️</span><span class="pt">נדל״ן</span></label><input type="radio" name="biz" id="b8"><label for="b8"><span class="pe">✨</span><span class="pt">אחר</span></label></div></div>
+    <div class="prof-step"><div class="pq"><span class="pnum">2</span> כמה עובדים?</div><div class="popts cols4"><input type="radio" name="size" id="sz1"><label for="sz1"><span class="pe">🧑</span><span class="pt">עצמאי</span></label><input type="radio" name="size" id="sz2"><label for="sz2"><span class="pe">👥</span><span class="pt">2-5</span></label><input type="radio" name="size" id="sz3"><label for="sz3"><span class="pe">👨‍👩‍👧‍👦</span><span class="pt">6-20</span></label><input type="radio" name="size" id="sz4"><label for="sz4"><span class="pe">🏢</span><span class="pt">20+</span></label></div></div>
+    <div class="prof-step"><div class="pq"><span class="pnum">3</span> כמה לקוחות פעילים?</div><div class="popts cols4"><input type="radio" name="cust" id="cu1"><label for="cu1"><span class="pe">📋</span><span class="pt">עד 50</span></label><input type="radio" name="cust" id="cu2"><label for="cu2"><span class="pe">📊</span><span class="pt">50-200</span></label><input type="radio" name="cust" id="cu3"><label for="cu3"><span class="pe">📈</span><span class="pt">200-1,000</span></label><input type="radio" name="cust" id="cu4"><label for="cu4"><span class="pe">🚀</span><span class="pt">1,000+</span></label></div></div>
+    <div class="prof-step"><div class="pq"><span class="pnum">4</span> כמה לידים בחודש?</div><div class="popts cols4"><input type="radio" name="leads" id="ld1"><label for="ld1"><span class="pe">💧</span><span class="pt">עד 20</span></label><input type="radio" name="leads" id="ld2"><label for="ld2"><span class="pe">🌊</span><span class="pt">20-100</span></label><input type="radio" name="leads" id="ld3"><label for="ld3"><span class="pe">🌊🌊</span><span class="pt">100-500</span></label><input type="radio" name="leads" id="ld4"><label for="ld4"><span class="pe">🔥</span><span class="pt">500+</span></label></div></div>
+    <hr class="prof-div">
+    <div class="prof-step"><div class="pq"><span class="pnum">5</span> כלים בשימוש <span style="font-weight:400;font-size:.7rem;color:var(--t3)">(כמה)</span></div><div class="popts cols4"><input type="checkbox" id="tl1"><label for="tl1"><span class="pe">📊</span><span class="pt">אקסל</span></label><input type="checkbox" id="tl2"><label for="tl2"><span class="pe">📋</span><span class="pt">CRM</span></label><input type="checkbox" id="tl3"><label for="tl3"><span class="pe">💬</span><span class="pt">ווטסאפ</span></label><input type="checkbox" id="tl4"><label for="tl4"><span class="pe">📧</span><span class="pt">דיוור</span></label><input type="checkbox" id="tl5"><label for="tl5"><span class="pe">📝</span><span class="pt">נייר</span></label><input type="checkbox" id="tl6"><label for="tl6"><span class="pe">🤷</span><span class="pt">אין כלים</span></label><input type="checkbox" id="tl7"><label for="tl7"><span class="pe">🔗</span><span class="pt">Zapier/Make</span></label><input type="checkbox" id="tl8"><label for="tl8"><span class="pe">🛠️</span><span class="pt">אחר</span></label></div></div>
+    <div class="prof-step"><div class="pq"><span class="pnum">6</span> הכאב הגדול <span style="font-weight:400;font-size:.7rem;color:var(--t3)">(כמה)</span></div><div class="popts cols3"><input type="checkbox" id="pn1"><label for="pn1"><span class="pe">📥</span><span class="pt">ניהול לידים</span></label><input type="checkbox" id="pn2"><label for="pn2"><span class="pe">🔄</span><span class="pt">מעקב לקוחות</span></label><input type="checkbox" id="pn3"><label for="pn3"><span class="pe">🧾</span><span class="pt">חשבוניות</span></label><input type="checkbox" id="pn4"><label for="pn4"><span class="pe">📅</span><span class="pt">תיאום פגישות</span></label><input type="checkbox" id="pn5"><label for="pn5"><span class="pe">📉</span><span class="pt">דיווח</span></label><input type="checkbox" id="pn6"><label for="pn6"><span class="pe">📢</span><span class="pt">שיווק</span></label><input type="checkbox" id="pn7"><label for="pn7"><span class="pe">🤖</span><span class="pt">שירות לקוחות</span></label><input type="checkbox" id="pn8"><label for="pn8"><span class="pe">🔀</span><span class="pt">חיבור מערכות</span></label><input type="checkbox" id="pn9"><label for="pn9"><span class="pe">⏰</span><span class="pt">חוסר בזמן</span></label></div></div>
+    <hr class="prof-div">
+    <div class="prof-step"><div class="pq"><span class="pnum">7</span> דחיפות?</div><div class="popts cols3"><input type="radio" name="urg" id="ur1"><label for="ur1"><span class="pe">🔥</span><span class="pt">עכשיו</span></label><input type="radio" name="urg" id="ur2"><label for="ur2"><span class="pe">📆</span><span class="pt">חודש-חודשיים</span></label><input type="radio" name="urg" id="ur3"><label for="ur3"><span class="pe">🔍</span><span class="pt">בודק</span></label></div></div>
+    <div class="prof-step"><div class="pq"><span class="pnum">8</span> תקציב חודשי?</div><div class="popts cols4"><input type="radio" name="bgt" id="bg1"><label for="bg1"><span class="pe">💰</span><span class="pt">עד ₪500</span></label><input type="radio" name="bgt" id="bg2"><label for="bg2"><span class="pe">💰💰</span><span class="pt">₪500-2K</span></label><input type="radio" name="bgt" id="bg3"><label for="bg3"><span class="pe">💎</span><span class="pt">₪2K-5K</span></label><input type="radio" name="bgt" id="bg4"><label for="bg4"><span class="pe">🏆</span><span class="pt">₪5K+</span></label></div></div>
+    <div class="prof-cta">
+      <h3>🎯 מעולה! שלחו לנו את הפרטים</h3>
+      <p>לחצו על הכפתור ונקבל את כל מה שמילאתם ישירות בווטסאפ</p>
+      <div id="safariNotice" style="background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.15);border-radius:10px;padding:.7rem;margin-bottom:.7rem;font-size:.78rem;color:#FF8A80;text-align:center">📱 פותחים מאייפון? לחצו שיתוף ⬆️ → ״פתח ב-Safari״</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center">
+        <a href="https://wa.me/972543256717?text=היי, אני מעוניין לשמוע על שירותי אוטומציה" id="profWaBtn" class="btn bp" style="flex:1;min-width:200px;justify-content:center">💬 שלחו את הפרופיל בווטסאפ</a>
+        <a href="tel:0543256717" class="btn bo" style="flex:1;min-width:200px;justify-content:center">📞 חייגו עכשיו</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+<section id="contact"><div class="ctn">
+  <span class="stag">צור קשר</span><h2 class="stitle">בואו <span class="gt">נדבר</span></h2><p class="ssub">השאירו פרטים ונחזור אליכם תוך שעות ספורות</p>
+  <div class="cgrid">
+    <div class="cinfo">
+      <a href="tel:0543256717" class="ci"><div class="ci-i">📞</div><div><div class="ci-l">טלפון</div><div class="ci-v">054-325-6717</div></div></a>
+      <a href="#" data-email class="ci"><div class="ci-i">📧</div><div><div class="ci-l">אימייל</div><div class="ci-v">loading...</div></div></a>
+      <a href="https://wa.me/972543256717" class="ci"><div class="ci-i">💬</div><div><div class="ci-l">ווטסאפ</div><div class="ci-v">054-325-6717</div></div></a>
+      <div class="ci"><div class="ci-i">🕐</div><div><div class="ci-l">שעות פעילות</div><div class="ci-v" style="direction:rtl">א׳-ה׳ 09:00-18:00</div></div></div>
+    </div>
+    <div class="cform" id="contactForm">
+      <div class="row"><input type="text" placeholder="שם מלא" id="cfName"><input type="tel" placeholder="טלפון" id="cfPhone"></div>
+      <input type="email" placeholder="אימייל" id="cfEmail">
+      <input type="text" placeholder="שם החברה" id="cfCompany">
+      <textarea placeholder="ספרו לנו במה נוכל לעזור..." id="cfMsg"></textarea>
+      <a href="https://wa.me/972543256717?text=היי, אני מעוניין לשמוע על שירותי אוטומציה" id="cfSubmit" class="btn bp" style="width:100%;justify-content:center;text-align:center">שליחת פנייה בווטסאפ ←</a>
+      <a href="#" data-mailbtn class="btn bo" style="width:100%;justify-content:center;text-align:center;margin-top:.4rem">📧 או שלחו מייל</a>
+    </div>
+  </div>
+</div></section>
+<footer><p>&copy; 2026 Corelink — אוטומציות לעסקים. כל הזכויות שמורות.</p></footer>
+<div class="waf"><a href="https://wa.me/972543256717?text=היי, מעוניין לשמוע על שירותי אוטומציה" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 0C7.18 0 0 7.18 0 16c0 3.5 1.13 6.74 3.05 9.38L1.06 31.14l5.96-1.97A15.9 15.9 0 0016 32c8.82 0 16-7.18 16-16S24.82 0 16 0zm9.31 22.61c-.39 1.1-1.93 2.01-3.17 2.28-.85.18-1.96.32-5.7-1.23-4.79-1.98-7.86-6.84-8.1-7.15-.23-.32-1.93-2.57-1.93-4.9 0-2.33 1.22-3.48 1.66-3.95.43-.48.95-.59 1.27-.59.32 0 .63 0 .91.02.29.01.68-.11 1.07.81.39.94 1.33 3.24 1.44 3.48.12.24.19.51.04.83-.15.31-.23.51-.46.79-.23.28-.49.62-.7.83-.23.23-.47.48-.2.95.27.46 1.2 1.98 2.58 3.21 1.77 1.58 3.27 2.07 3.73 2.31.46.23.73.19 1-.12.27-.32 1.16-1.35 1.47-1.81.31-.46.62-.39 1.04-.23.43.15 2.71 1.28 3.17 1.51.47.23.77.35.89.54.12.19.12 1.12-.27 2.22z"/></svg></a></div>
+<div class="mstk"><a href="tel:0543256717">📞 שיחת ייעוץ חינם — 054-325-6717</a></div>
+<script>
+/* All JS inline - no external files */
+(function(){
+/* Email from char codes - Cloudflare cant detect this */
+var E=String.fromCharCode(99,111,114,101,108,105,110,107,48,48,50,54,64,103,109,97,105,108,46,99,111,109);
+var eLinks=document.querySelectorAll('[data-email]');
+for(var i=0;i<eLinks.length;i++){eLinks[i].href='mai'+'lto:'+E;var v=eLinks[i].querySelector('.ci-v');if(v)v.textContent=E}
+var mLinks=document.querySelectorAll('[data-mailbtn]');
+for(var i=0;i<mLinks.length;i++){mLinks[i].href='mai'+'lto:'+E}
+/* PROFILER */
+var btn=document.getElementById('profWaBtn');
+if(btn){
+var rM={biz:{b1:'מסחר / קמעונאות',b2:'שירותים',b3:'טכנולוגיה',b4:'מזון ואירוח',b5:'בריאות',b6:'חינוך והדרכה',b7:'נדל"ן / בנייה',b8:'אחר'},size:{sz1:'עצמאי',sz2:'2-5 עובדים',sz3:'6-20 עובדים',sz4:'20+ עובדים'},cust:{cu1:'עד 50',cu2:'50-200',cu3:'200-1,000',cu4:'1,000+'},leads:{ld1:'עד 20/חודש',ld2:'20-100/חודש',ld3:'100-500/חודש',ld4:'500+/חודש'},urg:{ur1:'דחוף',ur2:'חודש-חודשיים',ur3:'בודק'},bgt:{bg1:'עד 500',bg2:'500-2K',bg3:'2K-5K',bg4:'5K+'}};
+var tM={tl1:'אקסל',tl2:'CRM',tl3:'ווטסאפ',tl4:'דיוור',tl5:'נייר',tl6:'אין כלים',tl7:'Zapier/Make',tl8:'אחר'};
+var pM={pn1:'ניהול לידים',pn2:'מעקב לקוחות',pn3:'חשבוניות',pn4:'פגישות',pn5:'דיווח',pn6:'שיווק',pn7:'שירות לקוחות',pn8:'חיבור מערכות',pn9:'חוסר זמן'};
+var lbl={biz:'🏢 תחום',size:'👥 עובדים',cust:'📊 לקוחות',leads:'📥 לידים',urg:'⏰ דחיפות',bgt:'💰 תקציב'};
+function bPM(){var L=['🔔 *פרופיל עסקי — Corelink*','━━━━━━━━━━━━━━━━━━',''];for(var n in rM){var s=document.querySelector('input[name="'+n+'"]:checked');L.push('*'+lbl[n]+':* '+(s?rM[n][s.id]:'—'))}var t=[];for(var k in tM){var el=document.getElementById(k);if(el&&el.checked)t.push(tM[k])}L.push('');L.push('*🛠 כלים:* '+(t.length?t.join(', '):'—'));var p=[];for(var k in pM){var el=document.getElementById(k);if(el&&el.checked)p.push(pM[k])}L.push('');L.push('*🔥 אתגרים:* '+(p.length?p.join(', '):'—'));L.push('');L.push('━━━━━━━━━━━━━━━━━━');return L.join('\n')}
+function uP(){btn.href='https://wa.me/972543256717?text='+encodeURIComponent(bPM())}
+var aI=document.querySelectorAll('#profile input[type=radio],#profile input[type=checkbox]');
+for(var i=0;i<aI.length;i++){aI[i].addEventListener('change',uP)}
+btn.addEventListener('click',function(e){uP()});
+var nt=document.getElementById('safariNotice');if(nt)nt.style.display='none';
+uP()}
+/* CONTACT FORM */
+var cf=document.getElementById('cfSubmit');
+if(cf){
+function uC(){var n=document.getElementById('cfName').value||'';var ph=document.getElementById('cfPhone').value||'';var em=document.getElementById('cfEmail').value||'';var co=document.getElementById('cfCompany').value||'';var ms=document.getElementById('cfMsg').value||'';var L=['📩 *פנייה חדשה — Corelink*','━━━━━━━━━━━━━━━━━━',''];if(n)L.push('*👤 שם:* '+n);if(ph)L.push('*📞 טלפון:* '+ph);if(em)L.push('*📧 אימייל:* '+em);if(co)L.push('*🏢 חברה:* '+co);if(ms){L.push('');L.push('*💬 הודעה:*');L.push(ms)}L.push('');L.push('━━━━━━━━━━━━━━━━━━');cf.href='https://wa.me/972543256717?text='+encodeURIComponent(L.join('\n'))}
+var fs=document.querySelectorAll('#contactForm input,#contactForm textarea');
+for(var i=0;i<fs.length;i++){fs[i].addEventListener('input',uC);fs[i].addEventListener('change',uC)}
+cf.addEventListener('click',function(){uC()});
+uC()}
+})();
+</script>
+</body>
+</html>
